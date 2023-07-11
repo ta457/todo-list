@@ -55,6 +55,7 @@
 }
 .inp-row > input,
 .inp-row > textarea,
+.inp-row > select,
 .inp-row > button {
     padding: 5px 10px;
     font-size: 1em;

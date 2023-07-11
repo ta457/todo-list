@@ -189,7 +189,7 @@ function screenController() {
 
         let form = document.createElement('form');
         let rows = [];
-        for(let i = 0; i < 4; i++) {
+        for(let i = 0; i < 5; i++) {
             let row = document.createElement('div');
             row.classList.add('row');
             row.classList.add('inp-row');
@@ -225,6 +225,20 @@ function screenController() {
         dueInp.required = true;
         rows[2].appendChild(dueLabel); rows[2].appendChild(dueInp);
 
+        let listLabel = document.createElement('label');
+        dueLabel.setAttribute('for', 'list');
+        dueLabel.textContent = "List";
+        let listInp = document.createElement('select');
+        listInp.setAttribute('name', 'list');
+        listInp.setAttribute('id', 'list');
+        lists.forEach((list, index) => {
+            let option = document.createElement('option');
+            option.setAttribute('value', 'select-'+index);
+            option.textContent = list.title;
+            listInp.appendChild(option);
+        });
+        rows[3].appendChild(listLabel); rows[3].appendChild(listInp);
+
         let submitBtn = document.createElement('button');
         submitBtn.setAttribute('type', 'submit');
         submitBtn.setAttribute('id', 'submit');
@@ -234,10 +248,14 @@ function screenController() {
                 event.preventDefault();
                 let date = dueInp.value.split("-");
                 todoMan.addTodo(titleInp.value, descInp.value, new Date(date[0], date[1]-1, date[2]));
+                
+                let value = listInp.value;
+                let listIndex = value[value.length -1];
+                lists[listIndex].tasks.push(todoList.length-1);
             }
             titleInp.value = ""; descInp.value = ""; dueInp.value = "";
         });
-        rows[3].appendChild(submitBtn);
+        rows[4].appendChild(submitBtn);
 
         rows.forEach(row => {
             form.appendChild(row);
