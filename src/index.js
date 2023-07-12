@@ -158,7 +158,7 @@ function screenController() {
             
             let icon = document.createElement('img');
             icon.classList.add('icon')
-            icon.setAttribute('src', '../src/icons/format-list-checkbox.svg');
+            icon.setAttribute('src', 'icons/format-list-checkbox.svg');
             icon.setAttribute('alt', 'list');
             row.appendChild(icon);
             
